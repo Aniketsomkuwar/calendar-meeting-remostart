@@ -1,4 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   padding: 0;
   margin: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.MuiSvgIcon-root {
+  color: #fff;
+}
+
+.MuiButton-root {
+  margin-top: -10px !important;
+  color: #66b2b2 !important;
+  font-weight: bold !important;
+  font-family: "Montserrat" !important;
+}
+
+/* .MuiButton-root:hover {
+  background-color: #89cff3 !important;
+} */
+
+.MuiTypography-overline {
+  display: none;
+}
+
+.MuiTypography-root,
+.MuiPickersCalendarHeader-label,
+.MuiPickersYear-yearButton,
+.MuiPickersDay-root {
+  font-family: "Montserrat" !important;
 }
