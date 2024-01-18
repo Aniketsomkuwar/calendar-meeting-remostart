@@ -12,8 +12,15 @@ export default function CalendarLarge({ customDate, handleCustomDate }) {
     if (calendarRef.current) {
       calendarRef.current.getApi().gotoDate(customDate);
       const api = calendarRef.current.getApi();
+
       const onDatesSet = (info) => {
-        handleCustomDate(new Date(Date.parse(info.view.title)));
+        const parsedDate = Date.parse(info.view.title);
+
+        if (!isNaN(parsedDate)) {
+          handleCustomDate(new Date(parsedDate));
+        } else {
+          handleCustomDate(new Date());
+        }
       };
 
       api.on("datesSet", onDatesSet);
