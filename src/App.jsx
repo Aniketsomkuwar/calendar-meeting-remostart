@@ -1,9 +1,9 @@
-import FetchData from "./FetchData";
+import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 
 function App() {
   return (
     <>
-      <FetchData />
+      <HomeScreen />
     </>
   );
 }
