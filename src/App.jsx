@@ -1,4 +1,3 @@
-import MeetingDetailsPage from "./Screens/DetailScreen/Components/MeetingDetailsPage";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 
 function App() {
@@ -19,8 +18,6 @@ function App() {
   return (
     <>
       <HomeScreen />
-      {/* <MeetingDetailsPage/> */}
-
     </>
   );
 }
