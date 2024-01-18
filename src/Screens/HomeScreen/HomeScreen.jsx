@@ -12,11 +12,8 @@ export default function HomeScreen() {
   return (
     <>
       <div className="flex">
-        <SideBar customDate={customDate} handleCustomDate={handleCustomDate} />
-        <CalendarLarge
-          customDate={customDate}
-          handleCustomDate={handleCustomDate}
-        />
+        <SideBar handleCustomDate={handleCustomDate} />
+        <CalendarLarge customDate={customDate} />
       </div>
     </>
   );
