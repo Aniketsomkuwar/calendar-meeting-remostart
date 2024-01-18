@@ -1,22 +1,29 @@
 import React from "react";
-import AttendeeCard from "./Cards/AttendeeCard";
-import ActionItemCard from "./Cards/ActionItemCard";
+import AttendeeCard from "./Components/Cards/AttendeeCard";
+import ActionItemCard from "./Components/Cards/ActionItemCard";
 
 const meetingData = {
-    date: '2023-09-07',
-    attendees: ['Ubio', 'Okan', 'Tommy', 'Chris', 'Vani', 'Rafael', 'Eszter'],
-    apologies: ['Jan'],
-    agendaItems: ['Documenting meetings for transparency', 'How to present ourselves to the community'],
-    keyDiscussionPoints: ['What is enough documentation?', 'Can we use AI tooling for documentation?', 'Balancing privacy with transparency'],
-    decisions: ["We'll make an audio recording of each meeting - not to share, but for avoidance of doubt"],
-    actionItems: [
-      { task: 'Okan to write a Medium article to introduce us', done: false },
-      {task: 'check design',done:true}
-    ],
-    outcomes: [' Sending a Tweet after each meeting?']
-}
-  
-
+  date: "2023-09-07",
+  attendees: ["Ubio", "Okan", "Tommy", "Chris", "Vani", "Rafael", "Eszter"],
+  apologies: ["Jan"],
+  agendaItems: [
+    "Documenting meetings for transparency",
+    "How to present ourselves to the community",
+  ],
+  keyDiscussionPoints: [
+    "What is enough documentation?",
+    "Can we use AI tooling for documentation?",
+    "Balancing privacy with transparency",
+  ],
+  decisions: [
+    "We'll make an audio recording of each meeting - not to share, but for avoidance of doubt",
+  ],
+  actionItems: [
+    { task: "Okan to write a Medium article to introduce us", done: false },
+    { task: "check design", done: true },
+  ],
+  outcomes: [" Sending a Tweet after each meeting?"],
+};
 
 const MeetingDetailsPage = () => {
   return (
@@ -36,7 +43,9 @@ const MeetingDetailsPage = () => {
       {/* middle Panel  */}
       <div className="w-3/5 bg-white p-4 overflow-y-auto flex flex-col justify-items-center">
         <div className="bg-[#272829] text-white py-5 text-center">
-          <h2 className="text-4xl font-extrabold">Meeting - {`${meetingData.date}`}</h2>
+          <h2 className="text-4xl font-extrabold">
+            Meeting - {`${meetingData.date}`}
+          </h2>
         </div>
         <div className="p-10 shadow-lg container mx-auto">
           <div className="mb-6">
@@ -88,15 +97,15 @@ const MeetingDetailsPage = () => {
 
         <div className="p-10 shadow-lg rounded-xl">
           <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-2">Outcomes</h3>
-              <ul className="list-disc list-inside">
-                {meetingData.outcomes.map((outcome, index) => (
-                  <li key={index} className="mb-1">
-                    {outcome}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h3 className="text-xl font-semibold mb-2">Outcomes</h3>
+            <ul className="list-disc list-inside">
+              {meetingData.outcomes.map((outcome, index) => (
+                <li key={index} className="mb-1">
+                  {outcome}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
