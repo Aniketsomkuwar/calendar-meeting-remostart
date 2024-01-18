@@ -1,6 +1,5 @@
-import FetchData from "./FetchData";
-import BigCalendar from "./components/BigCalendar";
-import MeetingDetailsPage from "./components/MeetingDetailsPage";
+import MeetingDetailsPage from "./Screens/DetailScreen/Components/MeetingDetailsPage";
+import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 
 function App() {
 
@@ -19,12 +18,9 @@ function App() {
 
   return (
     <>
-      {/* <FetchData /> */}
-      {/* <div className="w-9/12 ml-auto p-4">
-        <BigCalendar/>
-      </div> */}
+      <HomeScreen />
+      {/* <MeetingDetailsPage/> */}
 
-      <MeetingDetailsPage meetingData={ tempData } />
     </>
   );
 }
