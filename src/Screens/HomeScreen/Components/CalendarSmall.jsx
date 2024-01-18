@@ -1,16 +1,13 @@
 import { StaticDatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function CalendarSmall({ today, handleCustomDate, customDate }) {
+export default function CalendarSmall({ today, handleCustomDate }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
-
-  useEffect(() => {
-    setSelectedDate(dayjs(customDate).date(new Date().getDate()));
-  }, [customDate]);
 
   function handleResetCalendar() {
     setSelectedDate(today);
+    handleCustomDate(today);
   }
 
   return (

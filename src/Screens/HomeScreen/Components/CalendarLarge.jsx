@@ -5,31 +5,14 @@ import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import { useEffect, useRef, useState } from "react";
 
-export default function CalendarLarge({ customDate, handleCustomDate }) {
+export default function CalendarLarge({ customDate }) {
   const calendarRef = useRef(null);
 
   useEffect(() => {
     if (calendarRef.current) {
       calendarRef.current.getApi().gotoDate(customDate);
-      const api = calendarRef.current.getApi();
-
-      const onDatesSet = (info) => {
-        const parsedDate = Date.parse(info.view.title);
-
-        if (!isNaN(parsedDate)) {
-          handleCustomDate(new Date(parsedDate));
-        } else {
-          handleCustomDate(new Date());
-        }
-      };
-
-      api.on("datesSet", onDatesSet);
-
-      return () => {
-        api.off("datesSet", onDatesSet);
-      };
     }
-  }, [customDate, handleCustomDate]);
+  }, [customDate]);
 
   const [events, setEvents] = useState([
     {
