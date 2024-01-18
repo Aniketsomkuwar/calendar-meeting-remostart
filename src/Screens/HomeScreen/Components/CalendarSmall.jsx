@@ -1,11 +1,25 @@
 import { StaticDatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
+import { useEffect, useState } from "react";
 
-export default function CalendarSmall({ today }) {
+export default function CalendarSmall({ today, handleCustomDate, customDate }) {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  useEffect(() => {
+    setSelectedDate(dayjs(customDate).date(new Date().getDate()));
+  }, [customDate]);
+
+  function handleResetCalendar() {
+    setSelectedDate(today);
+  }
+
   return (
     <div className="w-fit left-0 right-0 mx-auto pt-12">
       <StaticDatePicker
         defaultValue={dayjs(today)}
+        value={dayjs(selectedDate)}
+        onChange={(newValue) => handleCustomDate(newValue.$d)}
+        onMonthChange={(newValue) => handleCustomDate(newValue.$d)}
         sx={{
           color: "#fff",
           backgroundColor: "#272829",
@@ -17,7 +31,7 @@ export default function CalendarSmall({ today }) {
           },
           ".MuiPickersCalendarHeader-labelContainer": {
             color: "#1976d2",
-            fontSize: "1.3rem",
+            fontSize: "1.1rem",
           },
           ".MuiPickersCalendarHeader-switchViewIcon": {
             color: "#fff",
@@ -38,6 +52,12 @@ export default function CalendarSmall({ today }) {
           },
         }}
       />
+      <button
+        className="text-[#66b2b2] px-5 py-2 font-customFont font-semibold relative left-56 bottom-10 hover:bg-[#2c3e50]"
+        onClick={handleResetCalendar}
+      >
+        Reset
+      </button>
     </div>
   );
 }

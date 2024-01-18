@@ -38,3 +38,64 @@
 .MuiPickersDay-root {
   font-family: "Montserrat" !important;
 }
+
+.MuiPickersLayout-actionBar button {
+  display: none;
+}
+
+/* Right Calendar Style Override */
+
+.fc-header-toolbar {
+  margin: 0 !important;
+  padding: 1.2rem;
+}
+
+.fc--button {
+  display: none !important;
+}
+
+.fc-dayGridMonth-button,
+.fc-timeGridWeek-button,
+.fc-timeGridDay-button {
+  border-radius: 0.25rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.fc-listWeek-button {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.fc-toolbar-title {
+  font-family: "Montserrat" !important;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.fc-button,
+.fc-list-empty,
+.fc-daygrid-day-number,
+.fc-scrollgrid-shrink-cushion,
+.fc-list-event-title {
+  font-family: "Montserrat" !important;
+}
+
+.fc-timegrid-axis-cushion {
+  font-size: 0.9rem;
+}
+
+.fc-col-header-cell-cushion {
+  font-family: "Montserrat" !important;
+  font-weight: 600;
+}
+
+.fc-list-event-time {
+  font-family: "Montserrat" !important;
+  font-weight: 500;
+}
+
+.fc-sticky {
+  font-family: "Montserrat" !important;
+  padding-left: 0.5rem !important;
+}
