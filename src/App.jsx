@@ -1,5 +1,5 @@
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
-
+import MeetingDetailsPage from "./Screens/DetailScreen/Components/MeetingDetailsPage"
 function App() {
 
   const tempData = {
@@ -17,7 +17,9 @@ function App() {
 
   return (
     <>
-      <HomeScreen />
+      {/* <HomeScreen /> */}
+      <MeetingDetailsPage/>
+      
     </>
   );
 }
