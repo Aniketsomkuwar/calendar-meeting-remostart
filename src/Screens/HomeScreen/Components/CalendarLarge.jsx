@@ -27,7 +27,6 @@ export default function CalendarLarge({ customDate }) {
   }, [customDate]);
 
   
-
    const handleEventClick = (info) => {
      setShowMeet(info.event._def.extendedProps.index);
   };
