@@ -1,12 +1,24 @@
 import React from "react";
 import AttendeeCard from "./Components/Cards/AttendeeCard";
 import ActionItemCard from "./Components/Cards/ActionItemCard";
+import { useMeetingContext } from "../../store/MeetingContext";
 
 const MeetingDetailsPage = ({ meetingData }) => {
+  const { setShowMeet } = useMeetingContext();
+  const handleGoBack = () => {
+    setShowMeet(null);
+  }
+
   return (
     <div className="flex h-screen font-customFont">
       {/* Left Panel (20% width) */}
-      <div className="w-1/5 bg-[#272829] text-white p-4 overflow-hidden">
+      <div className="w-1/5 bg-[#272829] text-white p-4 overflow-hidden ">
+        <div className="my-6">
+          <button onClick={ handleGoBack} className="text-[#272829] py-2 px-4 rounded-full hover:text-gray-300 focus:outline-none bg-white ">
+            &#8592; Go Back
+          </button>
+        </div>
+
         <div>
           <h3 className="text-lg font-semibold mb-2">Attendees</h3>
           <div className="space-y-2">
