@@ -1,4 +1,3 @@
-import React from "react";
 import AttendeeCard from "./Components/Cards/AttendeeCard";
 import ActionItemCard from "./Components/Cards/ActionItemCard";
 
@@ -25,14 +24,16 @@ const meetingData = {
   outcomes: [" Sending a Tweet after each meeting?"],
 };
 
-const MeetingDetailsPage = () => {
+const MeetingDetailsPage = ({ eventDetail }) => {
+  console.log(eventDetail);
+
   return (
     <div className="flex h-screen font-customFont">
       {/* Left Panel (20% width) */}
-      <div className="w-1/5 bg-[#272829] text-white p-4 overflow-hidden">
+      <div className="w-1/5 bg-[#272829] text-white pt-8 overflow-hidden">
         <div>
-          <h3 className="text-lg font-semibold mb-2">Attendees</h3>
-          <div className="space-y-2">
+          <h3 className="text-lg font-semibold mb-2 w-fit ml-10">Attendees</h3>
+          <div className="space-y-2 w-4/5 ml-10">
             {meetingData.attendees.map((attendee, index) => (
               <AttendeeCard key={index} attendee={attendee} />
             ))}
