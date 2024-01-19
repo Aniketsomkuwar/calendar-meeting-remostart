@@ -99,3 +99,8 @@
   font-family: "Montserrat" !important;
   padding-left: 0.5rem !important;
 }
+
+.fc-daygrid-event{
+  white-space:wrap !important;
+  cursor:pointer;
+}

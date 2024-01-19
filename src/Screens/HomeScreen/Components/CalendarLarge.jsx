@@ -4,43 +4,39 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import { useEffect, useRef, useState } from "react";
+import { useMeetingContext } from '../../../store/MeetingContext';
 
 export default function CalendarLarge({ customDate }) {
+  const { meetingData,setShowMeet } = useMeetingContext();
+  
+
   const calendarRef = useRef(null);
+  const events = meetingData.map((meeting,index) => ({
+    title: `${meeting.name} by ${meeting.documenter}`,
+    start: meeting.date,
+    end: meeting.date, 
+    index:index
+  }));
+  console.log(events)
 
   useEffect(() => {
     if (calendarRef.current) {
       calendarRef.current.getApi().gotoDate(customDate);
     }
+
   }, [customDate]);
 
-  const [events, setEvents] = useState([
-    {
-      title: "event1",
-      start: "2024-01-01",
-    },
-    {
-      title: "event11",
-      start: "2024-01-01",
-    },
-    {
-      title: "event12",
-      start: "2024-01-01",
-    },
-    {
-      title: "event13",
-      start: "2024-01-01",
-    },
-    {
-      title: "event2",
-      start: "2024-01-08",
-      end: "2024-01-10",
-    },
-  ]);
+  
+
+   const handleEventClick = (info) => {
+     setShowMeet(info.event._def.extendedProps.index);
+  };
+
+
 
   return (
     <div className="w-full">
-      <FullCalendar
+      { <FullCalendar
         ref={calendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
         initialView="dayGridMonth"
@@ -53,7 +49,11 @@ export default function CalendarLarge({ customDate }) {
         events={events}
         eventBackgroundColor="#66b2b2"
         eventBorderColor="#66b2b2"
-      />
+        eventClick={handleEventClick}
+        
+      />}
+
+  
     </div>
   );
 }

@@ -2,30 +2,7 @@ import React from "react";
 import AttendeeCard from "./Components/Cards/AttendeeCard";
 import ActionItemCard from "./Components/Cards/ActionItemCard";
 
-const meetingData = {
-  date: "2023-09-07",
-  attendees: ["Ubio", "Okan", "Tommy", "Chris", "Vani", "Rafael", "Eszter"],
-  apologies: ["Jan"],
-  agendaItems: [
-    "Documenting meetings for transparency",
-    "How to present ourselves to the community",
-  ],
-  keyDiscussionPoints: [
-    "What is enough documentation?",
-    "Can we use AI tooling for documentation?",
-    "Balancing privacy with transparency",
-  ],
-  decisions: [
-    "We'll make an audio recording of each meeting - not to share, but for avoidance of doubt",
-  ],
-  actionItems: [
-    { task: "Okan to write a Medium article to introduce us", done: false },
-    { task: "check design", done: true },
-  ],
-  outcomes: [" Sending a Tweet after each meeting?"],
-};
-
-const MeetingDetailsPage = () => {
+const MeetingDetailsPage = ({ meetingData }) => {
   return (
     <div className="flex h-screen font-customFont">
       {/* Left Panel (20% width) */}
@@ -48,7 +25,7 @@ const MeetingDetailsPage = () => {
           </h2>
         </div>
         <div className="p-10 shadow-lg container mx-auto">
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">Apologies</h3>
             <ul className="list-disc list-inside">
               {meetingData.apologies.map((apology, index) => (
@@ -57,7 +34,7 @@ const MeetingDetailsPage = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">Agenda Items</h3>
@@ -95,7 +72,7 @@ const MeetingDetailsPage = () => {
           </div>
         </div>
 
-        <div className="p-10 shadow-lg rounded-xl">
+        {/* <div className="p-10 shadow-lg rounded-xl">
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">Outcomes</h3>
             <ul className="list-disc list-inside">
@@ -106,7 +83,7 @@ const MeetingDetailsPage = () => {
               ))}
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* right panel  */}
