@@ -2,7 +2,7 @@ import { useState } from "react";
 import CalendarLarge from "./Components/CalendarLarge";
 import SideBar from "./Components/SideBar";
 
-export default function HomeScreen() {
+export default function HomeScreen({ newEvents }) {
   const [customDate, setCustomDate] = useState(new Date());
 
   function handleCustomDate(date) {
@@ -12,7 +12,7 @@ export default function HomeScreen() {
   return (
     <>
       <div className="flex">
-        <SideBar handleCustomDate={handleCustomDate} />
+        <SideBar handleCustomDate={handleCustomDate} newEvents={newEvents} />
         <CalendarLarge customDate={customDate} />
       </div>
     </>

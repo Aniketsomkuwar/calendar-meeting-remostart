@@ -2,10 +2,10 @@ import dayjs from "dayjs";
 import CalendarSmall from "./CalendarSmall";
 import Events from "./Events";
 
-export default function SideBar({ handleCustomDate }) {
+export default function SideBar({ handleCustomDate, newEvents }) {
   const today = new Date();
-  const todayDate = dayjs(today).format("DD/MM/YYYY");
-  const tomorrowDate = dayjs(today).add(1, "day").format("DD/MM/YYYY");
+  const todayDate = dayjs(today).format("YYYY-MM-DD");
+  const tomorrowDate = dayjs(today).add(1, "day").format("YYYY-MM-DD");
 
   return (
     <>
@@ -13,25 +13,37 @@ export default function SideBar({ handleCustomDate }) {
         <CalendarSmall today={today} handleCustomDate={handleCustomDate} />
 
         <Events date={todayDate} day={"TODAY"}>
-          <div className="text-white flex items-center gap-2 font-light">
-            <span className="text-xs">🟢</span>
-            <span className="text-sm">Final project meeting</span>
-          </div>
-          <div className="text-white flex items-center gap-2 font-light">
-            <span className="text-xs">🟢</span>
-            <span className="text-sm">Lunch interview</span>
-          </div>
+          {newEvents.map((meeting, i) =>
+            meeting.start === todayDate ? (
+              <div
+                className="text-white flex items-center gap-2 font-light"
+                key={i}
+              >
+                <span className="text-xs">🟢</span>
+                <span className="text-sm">{meeting.title}</span>
+              </div>
+            ) : null
+          )}
+          {newEvents.every((meeting) => meeting.start !== todayDate) && (
+            <div className="text-yellow-500">No Meetings</div>
+          )}
         </Events>
 
         <Events date={tomorrowDate} day={"TOMORROW"}>
-          <div className="text-white flex items-center gap-2 font-light">
-            <span className="text-xs">🟢</span>
-            <span className="text-sm">Meeting with client</span>
-          </div>
-          <div className="text-white flex items-center gap-2 font-light">
-            <span className="text-xs">🟢</span>
-            <span className="text-sm">On-call interview</span>
-          </div>
+          {newEvents.map((meeting, i) =>
+            meeting.start === tomorrowDate ? (
+              <div
+                className="text-white flex items-center gap-2 font-light"
+                key={i}
+              >
+                <span className="text-xs">🟢</span>
+                <span className="text-sm">{meeting.title}</span>
+              </div>
+            ) : null
+          )}
+          {newEvents.every((meeting) => meeting.start !== tomorrowDate) && (
+            <div className="text-yellow-500">No Meetings</div>
+          )}
         </Events>
       </aside>
     </>
