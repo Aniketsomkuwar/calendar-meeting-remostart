@@ -3,7 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef} from "react";
 import { useMeetingContext } from '../../../store/MeetingContext';
 
 export default function CalendarLarge({ customDate }) {
@@ -17,7 +17,7 @@ export default function CalendarLarge({ customDate }) {
     end: meeting.date, 
     index:index
   }));
-  console.log(events)
+  
 
   useEffect(() => {
     if (calendarRef.current) {
