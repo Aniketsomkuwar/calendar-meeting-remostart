@@ -48,8 +48,8 @@ function App() {
             .map((item) =>
               item.actionItems.map((action) => ({
                 task: action.text,
-                done:
-                  action.status === "in progress" || action.status === "done",
+                status: action.status,
+                icon: action.status === "in progress" && "🚧" || action.status==="done" && "✅" || action.status==="todo" && "📝"
               }))
             )
             .flat();

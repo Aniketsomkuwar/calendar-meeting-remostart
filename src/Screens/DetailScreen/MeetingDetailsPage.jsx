@@ -1,12 +1,21 @@
-import React from "react";
+import React,{useState} from "react";
 import AttendeeCard from "./Components/Cards/AttendeeCard";
 import ActionItemCard from "./Components/Cards/ActionItemCard";
 import { useMeetingContext } from "../../store/MeetingContext";
 
 const MeetingDetailsPage = ({ meetingData }) => {
   const { setShowMeet } = useMeetingContext();
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const handleGoBack = () => {
     setShowMeet(null);
+  }
+
+  const filterActionItems = () => {
+    if (selectedCategory === "all") {
+      return meetingData.actionItems;
+    } else {
+      return meetingData.actionItems.filter(item => item.status === selectedCategory);
+    }
   }
 
   return (
@@ -33,7 +42,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
       <div className="w-3/5 bg-white p-4 overflow-y-auto flex flex-col justify-items-center">
         <div className="bg-[#272829] text-white py-5 text-center">
           <h2 className="text-4xl font-extrabold">
-            Meeting - {`${meetingData.date}`}
+            {meetingData.name} by {meetingData.documenter} - {meetingData.date}
           </h2>
         </div>
         <div className="p-10 shadow-lg container mx-auto">
@@ -99,10 +108,16 @@ const MeetingDetailsPage = ({ meetingData }) => {
       </div>
 
       {/* right panel  */}
-      <div className="w-1/5 bg-gray-200 p-4 overflow-hidden">
-        <h3 className="text-2xl font-bold mb-4">Action Items</h3>
+      <div className="w-1/5 bg-gray-200 p-4 overflow-y-auto">
+        <h3 className="text-2xl font-bold mb-4 text-center">Action Items</h3>
+        <div className="flex space-x-4 mb-4">
+            <button onClick={() => setSelectedCategory("all")} className={`text-sm px-2 py-1  focus:outline-none ${selectedCategory === "all" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>All</button>
+            <button onClick={() => setSelectedCategory("todo")} className={`text-sm px-2 py-1 focus:outline-none ${selectedCategory === "todo" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>To Do</button>
+            <button onClick={() => setSelectedCategory("in progress")} className={`text-sm px-2 py-1  focus:outline-none ${selectedCategory === "inprogress" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>In Progress</button>
+            <button onClick={() => setSelectedCategory("done")} className={`text-sm px-2 py-1 focus:outline-none ${selectedCategory === "done" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>Done</button>
+          </div>
         <div className="space-y-2">
-          {meetingData.actionItems.map((actionItem, index) => (
+          {filterActionItems().map((actionItem, index) => (
             <ActionItemCard key={index} actionItem={actionItem} />
           ))}
         </div>
