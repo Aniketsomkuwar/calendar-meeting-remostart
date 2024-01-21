@@ -93,7 +93,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
           </div>
         </div>
 
-        {/* <div className="p-10 shadow-lg rounded-xl">
+        {meetingData.outcomes && <div className="p-10 shadow-lg rounded-xl">
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">Outcomes</h3>
             <ul className="list-disc list-inside">
@@ -104,7 +104,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
               ))}
             </ul>
           </div>
-        </div> */}
+        </div>}
       </div>
 
       {/* right panel  */}
