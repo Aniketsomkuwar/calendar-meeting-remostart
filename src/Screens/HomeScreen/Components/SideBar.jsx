@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import CalendarSmall from "./CalendarSmall";
 import Events from "./Events";
+import SearchBar from "./SearchBar";
 
 export default function SideBar({ handleCustomDate, newEvents }) {
   const today = new Date();
@@ -9,7 +10,9 @@ export default function SideBar({ handleCustomDate, newEvents }) {
 
   return (
     <>
-      <aside className="w-fit px-10 h-screen bg-[#272829]">
+      <aside className="w-fit h-screen bg-[#272829]">
+        <SearchBar newEvents={newEvents} />
+
         <CalendarSmall today={today} handleCustomDate={handleCustomDate} />
 
         <Events date={todayDate} day={"TODAY"}>

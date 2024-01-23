@@ -49,7 +49,10 @@ function App() {
               item.actionItems.map((action) => ({
                 task: action.text,
                 status: action.status,
-                icon: action.status === "in progress" && "🚧" || action.status==="done" && "✅" || action.status==="todo" && "📝"
+                icon:
+                  (action.status === "in progress" && "🚧") ||
+                  (action.status === "done" && "✅") ||
+                  (action.status === "todo" && "📝"),
               }))
             )
             .flat();
@@ -94,6 +97,7 @@ function App() {
       } by ${
         meeting ? meeting.data.summary.meetingInfo.documenter : "Unknown"
       }`,
+      host: `${meeting ? meeting.data.summary.meetingInfo.host : "Unknown"}`,
       start: `${
         meeting ? meeting.data.summary.meetingInfo.date : "2020-02-29"
       }`,

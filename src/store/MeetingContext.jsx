@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 // Create a context
 const MeetingContext = createContext();
@@ -6,9 +6,19 @@ const MeetingContext = createContext();
 // Create a context provider
 export const MeetingProvider = ({ children }) => {
   const [meetingData, setMeetingData] = useState([]);
-  const [showMeet,setShowMeet] = useState(null)
+  const [showMeet, setShowMeet] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   return (
-    <MeetingContext.Provider value={{ meetingData, setMeetingData ,showMeet,setShowMeet}}>
+    <MeetingContext.Provider
+      value={{
+        meetingData,
+        setMeetingData,
+        showMeet,
+        setShowMeet,
+        searchQuery,
+        setSearchQuery,
+      }}
+    >
       {children}
     </MeetingContext.Provider>
   );

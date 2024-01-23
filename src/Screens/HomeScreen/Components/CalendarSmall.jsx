@@ -11,7 +11,7 @@ export default function CalendarSmall({ today, handleCustomDate }) {
   }
 
   return (
-    <div className="w-fit left-0 right-0 mx-auto pt-12">
+    <div className="w-fit left-0 right-0 mx-auto pt-12 px-10">
       <StaticDatePicker
         defaultValue={dayjs(today)}
         value={dayjs(selectedDate)}
