@@ -113,7 +113,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
         <div className="flex space-x-4 mb-4">
             <button onClick={() => setSelectedCategory("all")} className={`text-sm px-2 py-1  focus:outline-none ${selectedCategory === "all" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>All</button>
             <button onClick={() => setSelectedCategory("todo")} className={`text-sm px-2 py-1 focus:outline-none ${selectedCategory === "todo" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>To Do</button>
-            <button onClick={() => setSelectedCategory("in progress")} className={`text-sm px-2 py-1  focus:outline-none ${selectedCategory === "inprogress" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>In Progress</button>
+            <button onClick={() => setSelectedCategory("in progress")} className={`text-sm px-2 py-1  focus:outline-none ${selectedCategory === "in progress" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>In Progress</button>
             <button onClick={() => setSelectedCategory("done")} className={`text-sm px-2 py-1 focus:outline-none ${selectedCategory === "done" ? "bg-[#272829] text-gray-300" : "text-[#272829]"}`}>Done</button>
           </div>
         <div className="space-y-2">
