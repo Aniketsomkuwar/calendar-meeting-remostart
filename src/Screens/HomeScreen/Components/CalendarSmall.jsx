@@ -1,13 +1,17 @@
 import { StaticDatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { useState } from "react";
+import { useMeetingContext } from "../../../store/MeetingContext";
 
 export default function CalendarSmall({ today, handleCustomDate }) {
+  const { setSearchQuery } = useMeetingContext();
+
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   function handleResetCalendar() {
     setSelectedDate(today);
     handleCustomDate(today);
+    setSearchQuery("");
   }
 
   return (
