@@ -141,7 +141,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
           <button
             onClick={() => setSelectedCategory("in progress")}
             className={`text-sm px-2 py-1  focus:outline-none ${
-              selectedCategory === "inprogress"
+              selectedCategory === "in progress"
                 ? "bg-[#272829] text-gray-300"
                 : "text-[#272829]"
             }`}
