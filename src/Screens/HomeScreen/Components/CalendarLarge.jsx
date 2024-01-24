@@ -11,8 +11,6 @@ export default function CalendarLarge({ customDate }) {
 
   const [highlightedEvent, setHighlightedEvent] = useState(null);
 
-  console.log(highlightedEvent);
-
   const calendarRef = useRef(null);
   const events = meetingData.map((meeting, index) => ({
     title: `${meeting.name} by ${meeting.documenter}`,

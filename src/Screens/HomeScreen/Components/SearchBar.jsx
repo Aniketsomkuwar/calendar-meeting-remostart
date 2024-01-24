@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BiSolidCategory, BiMessageSquareDetail, BiUser } from "react-icons/bi";
+import { BiSolidCategory, BiUser } from "react-icons/bi";
 import { PiTextAUnderlineBold } from "react-icons/pi";
 import IconButton from "./IconButton";
 import { useMeetingContext } from "../../../store/MeetingContext";
@@ -74,10 +74,6 @@ export default function SearchBar({ newEvents }) {
 
             <IconButton onButtonClick={() => setDropType("host")}>
               <BiUser size={18} />
-            </IconButton>
-
-            <IconButton onButtonClick={() => setDropType("description")}>
-              <BiMessageSquareDetail size={18} />
             </IconButton>
           </div>
         )}
