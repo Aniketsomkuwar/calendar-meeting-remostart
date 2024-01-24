@@ -10,7 +10,7 @@ export default function SideBar({ handleCustomDate, newEvents }) {
 
   return (
     <>
-      <aside className="w-fit h-screen bg-[#272829]">
+      <aside className="w-fit min-h-screen bg-[#272829]">
         <SearchBar newEvents={newEvents} />
 
         <CalendarSmall today={today} handleCustomDate={handleCustomDate} />
