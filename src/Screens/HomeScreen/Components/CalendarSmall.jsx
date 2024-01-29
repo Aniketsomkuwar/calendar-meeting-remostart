@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useMeetingContext } from "../../../store/MeetingContext";
 
 export default function CalendarSmall({ today, handleCustomDate }) {
-  const { setSearchQuery } = useMeetingContext();
+  const { setSearchQuery, setInputValue } = useMeetingContext();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -12,6 +12,7 @@ export default function CalendarSmall({ today, handleCustomDate }) {
     setSelectedDate(today);
     handleCustomDate(today);
     setSearchQuery("");
+    setInputValue("");
   }
 
   return (

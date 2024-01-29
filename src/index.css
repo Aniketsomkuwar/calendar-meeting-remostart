@@ -110,3 +110,7 @@
 .fc-list-event-title {
   cursor: pointer;
 }
+
+.selected-event {
+  background-color: #66b2b2 !important;
+}

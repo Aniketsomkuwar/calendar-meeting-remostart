@@ -5,14 +5,12 @@ import IconButton from "./IconButton";
 import { useMeetingContext } from "../../../store/MeetingContext";
 
 export default function SearchBar({ newEvents }) {
-  const { setSearchQuery } = useMeetingContext();
+  const { setSearchQuery, inputValue, setInputValue } = useMeetingContext();
 
   const [dropVisible, setDropVisible] = useState(false);
   const [iconTrayVisible, setIconTrayVisible] = useState(false);
 
-  const [inputValue, setInputValue] = useState("");
-
-  const [dropType, setDropType] = useState("title");
+  const [dropType, setDropType] = useState("agenda");
 
   function handleSearchDropVisible() {
     setIconTrayVisible(false);
@@ -37,10 +35,10 @@ export default function SearchBar({ newEvents }) {
     const filtered = newEvents.filter((item) => {
       const searchString = inputValue.toLowerCase();
       const fieldToSearch =
-        dropType === "title"
-          ? item.title.toLowerCase()
-          : dropType === "host"
-          ? item.host.toLowerCase()
+        dropType === "agenda"
+          ? item.agenda.toLowerCase()
+          : dropType === "present"
+          ? item.present.toLowerCase()
           : "";
 
       return fieldToSearch.includes(searchString);
@@ -50,7 +48,7 @@ export default function SearchBar({ newEvents }) {
   }, [newEvents, inputValue, dropType]);
 
   function handleListClick(item) {
-    setInputValue(dropType === "title" ? item.title : item.host);
+    setInputValue(dropType === "agenda" ? item.agenda : item.present);
     setSearchQuery(item.id);
   }
 
@@ -68,11 +66,11 @@ export default function SearchBar({ newEvents }) {
 
         {iconTrayVisible && (
           <div className="absolute top-[4.5rem] bg-[#2c3e50] ml-4 py-1 rounded-3xl border-2 border-white border-solid z-10">
-            <IconButton onButtonClick={() => setDropType("title")}>
+            <IconButton onButtonClick={() => setDropType("agenda")}>
               <PiTextAUnderlineBold size={18} />
             </IconButton>
 
-            <IconButton onButtonClick={() => setDropType("host")}>
+            <IconButton onButtonClick={() => setDropType("present")}>
               <BiUser size={18} />
             </IconButton>
           </div>
@@ -98,7 +96,7 @@ export default function SearchBar({ newEvents }) {
                 onClick={() => handleListClick(item)}
               >
                 <span className="text-xs mr-2">🟢</span>
-                {dropType === "title" ? item.title : item.host}
+                {dropType === "agenda" ? item.agenda : item.present}
               </li>
             ))}
           </ul>

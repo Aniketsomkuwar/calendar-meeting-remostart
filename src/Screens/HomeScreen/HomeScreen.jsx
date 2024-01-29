@@ -13,7 +13,7 @@ export default function HomeScreen({ newEvents }) {
     <>
       <div className="flex">
         <SideBar handleCustomDate={handleCustomDate} newEvents={newEvents} />
-        <CalendarLarge customDate={customDate} />
+        <CalendarLarge customDate={customDate} newEvents={newEvents} />
       </div>
     </>
   );

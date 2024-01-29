@@ -6,18 +6,19 @@ import listPlugin from "@fullcalendar/list";
 import { useEffect, useRef, useState } from "react";
 import { useMeetingContext } from "../../../store/MeetingContext";
 
-export default function CalendarLarge({ customDate }) {
+export default function CalendarLarge({ customDate, newEvents }) {
   const { meetingData, setShowMeet, searchQuery } = useMeetingContext();
 
   const [highlightedEvent, setHighlightedEvent] = useState(null);
 
   const calendarRef = useRef(null);
-  const events = meetingData.map((meeting, index) => ({
-    title: `${meeting.name} by ${meeting.documenter}`,
-    start: meeting.date,
-    end: meeting.date,
+  const events = newEvents.map((meeting, index) => ({
+    title: meeting.agenda,
+    start: meeting.start,
     index: index,
-    backgroundColor: highlightedEvent === index ? "#66b2b2" : "#3788d8",
+    // backgroundColor: highlightedEvent === index ? "#66b2b2" : "#3788d8",
+    borderColor: highlightedEvent === index ? "#3788d8" : "#66b2b2",
+    classNames: highlightedEvent === index ? "selected-event" : "",
   }));
 
   useEffect(() => {
@@ -66,12 +67,12 @@ export default function CalendarLarge({ customDate }) {
             interactionPlugin,
             listPlugin,
           ]}
-          initialView="dayGridMonth"
+          initialView="listMonth"
           height="100%"
           headerToolbar={{
             start: "today prev,next",
             center: "title",
-            end: "dayGridMonth, timeGridWeek, timeGridDay, listMonth",
+            end: "listMonth",
           }}
           events={events}
           eventBackgroundColor="#66b2b2"
