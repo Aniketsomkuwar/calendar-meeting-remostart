@@ -3,6 +3,8 @@ import axios from "axios";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 import MeetingDetailsPage from "./Screens/DetailScreen/MeetingDetailsPage";
 import { useMeetingContext } from "./store/MeetingContext";
+const API = import.meta.env.VITE_REACT_APP_API;
+const KEY = import.meta.env.VITE_REACT_APP_KEY;
 
 function App() {
   const { meetingData, setMeetingData, showMeet } = useMeetingContext();
@@ -11,9 +13,8 @@ function App() {
 
   useEffect(() => {
     const fetchMeetingdata = async () => {
-      const SERVER_API_URI =
-        "https://archive-oracle.netlify.app/api/getMeetingSummaries";
-      const API_KEY = "bht409534jgerg4t4e8ge4gf8f3f3fsg";
+      const SERVER_API_URI =API;
+      const API_KEY = KEY;
 
       try {
         const response = await axios.get(SERVER_API_URI, {
