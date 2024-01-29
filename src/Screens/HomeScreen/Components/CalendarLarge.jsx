@@ -7,13 +7,13 @@ import { useEffect, useRef, useState } from "react";
 import { useMeetingContext } from "../../../store/MeetingContext";
 
 export default function CalendarLarge({ customDate, newEvents }) {
-  const { meetingData, setShowMeet, searchQuery } = useMeetingContext();
+  const { setShowMeet, searchQuery } = useMeetingContext();
 
   const [highlightedEvent, setHighlightedEvent] = useState(null);
 
   const calendarRef = useRef(null);
   const events = newEvents.map((meeting, index) => ({
-    title: meeting.agenda,
+    title: meeting.title,
     start: meeting.start,
     index: index,
     // backgroundColor: highlightedEvent === index ? "#66b2b2" : "#3788d8",

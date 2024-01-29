@@ -33,15 +33,15 @@ export default function SearchBar({ newEvents }) {
   useEffect(() => {
     // Filter events based on input value and drop type
     const filtered = newEvents.filter((item) => {
-      const searchString = inputValue.toLowerCase();
+      const searchString = inputValue.trim().toLowerCase(); // trim to handle empty spaces
       const fieldToSearch =
         dropType === "agenda"
-          ? item.agenda.toLowerCase()
+          ? item.agenda.trim().toLowerCase() // trim to handle empty agenda items
           : dropType === "present"
           ? item.present.toLowerCase()
           : "";
 
-      return fieldToSearch.includes(searchString);
+      return fieldToSearch !== "" && fieldToSearch.includes(searchString);
     });
 
     setFilteredEvents(filtered);

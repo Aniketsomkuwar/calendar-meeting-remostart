@@ -94,6 +94,13 @@ function App() {
     return {
       id: meeting?.id,
       agenda: `${
+        meeting.data.summary.agendaItems
+          ? meeting.data.summary.agendaItems
+              .map((item) => (item.agenda ? item.agenda : ""))
+              .join(", ")
+          : ""
+      }`,
+      title: `${
         meeting ? meeting.data.summary.meetingInfo.name : "Meeting"
       } by ${
         meeting ? meeting.data.summary.meetingInfo.documenter : "Unknown"
@@ -106,6 +113,7 @@ function App() {
       }`,
     };
   });
+  console.log(newEvents);
 
   return (
     <>
