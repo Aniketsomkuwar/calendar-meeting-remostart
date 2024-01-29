@@ -12,9 +12,9 @@ const MeetingDetailsPage = ({ meetingData }) => {
 
   const filterActionItems = () => {
     if (selectedCategory === "all") {
-      return meetingData.actionItems;
+      return meetingData?.actionItems;
     } else {
-      return meetingData.actionItems.filter(
+      return meetingData?.actionItems?.filter(
         (item) => item.status === selectedCategory
       );
     }
@@ -33,21 +33,21 @@ const MeetingDetailsPage = ({ meetingData }) => {
           </button>
         </div>
 
-        <div>
+        {meetingData?.attendees && <div>
           <h3 className="text-lg font-semibold mb-2">Attendees</h3>
           <div className="space-y-2">
             {meetingData.attendees.map((attendee, index) => (
               <AttendeeCard key={index} attendee={attendee} />
             ))}
           </div>
-        </div>
+        </div>}
       </div>
 
       {/* middle Panel  */}
       <div className="w-3/5 bg-white p-4 overflow-y-auto flex flex-col justify-items-center">
         <div className="bg-[#272829] text-white py-5 text-center">
           <h2 className="text-4xl font-extrabold">
-            {meetingData.name} by {meetingData.documenter} - {meetingData.date}
+            {meetingData?.name} by {meetingData?.documenter} - {meetingData?.date}
           </h2>
         </div>
         <div className="p-10 shadow-lg container mx-auto">
@@ -62,7 +62,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
             </ul>
           </div> */}
 
-          <div className="mb-6">
+          {meetingData?.agendaItems && <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">Agenda Items</h3>
             <ul className="list-disc list-inside">
               {meetingData.agendaItems.map((item, index) => (
@@ -71,9 +71,9 @@ const MeetingDetailsPage = ({ meetingData }) => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div>}
 
-          <div className="mb-6">
+         {meetingData?.keyDiscussionPoints && <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">
               Key Discussion Points
             </h3>
@@ -84,9 +84,9 @@ const MeetingDetailsPage = ({ meetingData }) => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div>}
 
-          <div className="mb-6">
+          {meetingData?.decisions && <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">Decisions</h3>
             <ul className="list-disc list-inside">
               {meetingData.decisions.map((decision, index) => (
@@ -95,10 +95,10 @@ const MeetingDetailsPage = ({ meetingData }) => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div>}
         </div>
 
-        {meetingData.outcomes && (
+        {meetingData?.outcomes && (
           <div className="p-10 shadow-lg rounded-xl">
             <div className="mb-6">
               <h3 className="text-xl font-semibold mb-2">Outcomes</h3>
@@ -160,7 +160,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
           </button>
         </div>
         <div className="space-y-2">
-          {filterActionItems().map((actionItem, index) => (
+          {filterActionItems()?.map((actionItem, index) => (
             <ActionItemCard key={index} actionItem={actionItem} />
           ))}
         </div>

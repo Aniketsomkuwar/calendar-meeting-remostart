@@ -22,60 +22,60 @@ function App() {
           },
         });
 
-        // console.log(response.data.data);
-        // const convertedData = response.data.data.map((meeting) => {
-        //   const meetingInfo = meeting.summary.meetingInfo;
+        console.log(response.data.data);
+        const convertedData = response.data.data.map((meeting) => {
+          const meetingInfo = meeting.summary.meetingInfo;
 
-        //   const date = meetingInfo.date;
-        //   const name = meetingInfo.name;
-        //   const host = meetingInfo.host;
-        //   const documenter = meetingInfo.documenter;
-        //   const attendees = meetingInfo.peoplePresent
-        //     .split(",")
-        //     .map((attendee) => attendee.trim());
-        //   const agendaItems = meeting.summary.agendaItems
-        //     .map((item) => item.issues)
-        //     .flat();
-        //   const keyDiscussionPoints = meeting.summary.agendaItems
-        //     .map((item) => item.discussionPoints)
-        //     .flat();
-        //   const decisions = meeting.summary.agendaItems
-        //     .map((item) =>
-        //       item.decisionItems.map((decision) => decision.decision)
-        //     )
-        //     .flat();
-        //   const actionItems = meeting.summary.agendaItems
-        //     .map((item) =>
-        //       item.actionItems.map((action) => ({
-        //         task: action.text,
-        //         status: action.status,
-        //         icon:
-        //           (action.status === "in progress" && "🚧") ||
-        //           (action.status === "done" && "✅") ||
-        //           (action.status === "todo" && "📝"),
-        //       }))
-        //     )
-        //     .flat();
-        //   const outcomes = meeting.summary.agendaItems
-        //     .map((item) => item.learningPoints)
-        //     .flat();
+          const date = meetingInfo.date;
+          const name = meetingInfo.name;
+          const host = meetingInfo.host;
+          const documenter = meetingInfo.documenter;
+          const attendees = meetingInfo.peoplePresent
+            ?.split(",")
+            ?.map((attendee) => attendee.trim());
+          const agendaItems = meeting.summary.agendaItems
+            ?.map((item) => item.issues)
+            .flat();
+          const keyDiscussionPoints = meeting.summary.agendaItems
+            ?.map((item) => item.discussionPoints)
+            .flat();
+          const decisions = meeting.summary.agendaItems
+            ?.map((item) =>
+              item.decisionItems?.map((decision) => decision.decision)
+            )
+            .flat();
+          const actionItems = meeting.summary.agendaItems
+            ?.map((item) =>
+              item.actionItems?.map((action) => ({
+                task: action?.text,
+                status: action?.status,
+                icon:
+                  (action.status === "in progress" && "🚧") ||
+                  (action.status === "done" && "✅") ||
+                  (action.status === "todo" && "📝"),
+              }))
+            )
+            .flat();
+          const outcomes = meeting.summary.agendaItems
+            ?.map((item) => item.learningPoints)
+            .flat();
 
-        //   return {
-        //     date,
-        //     name,
-        //     host,
-        //     documenter,
-        //     attendees,
-        //     agendaItems,
-        //     keyDiscussionPoints,
-        //     decisions,
-        //     actionItems,
-        //     outcomes,
-        //   };
-        // });
+          return {
+            date,
+            name,
+            host,
+            documenter,
+            attendees,
+            agendaItems,
+            keyDiscussionPoints,
+            decisions,
+            actionItems,
+            outcomes,
+          };
+        });
         console.log(response.data.data);
         setDataForAside(response.data.data);
-        // setMeetingData(convertedData);
+        setMeetingData(convertedData);
       } catch (error) {
         console.log(error);
       }
