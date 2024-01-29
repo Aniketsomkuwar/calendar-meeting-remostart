@@ -13,7 +13,7 @@ function App() {
     const fetchMeetingdata = async () => {
       const SERVER_API_URI =
         "https://archive-oracle.netlify.app/api/getMeetingSummaries";
-      const API_KEY = API_KEY;
+      const API_KEY = "bht409534jgerg4t4e8ge4gf8f3f3fsg";
 
       try {
         const response = await axios.get(SERVER_API_URI, {
@@ -22,7 +22,6 @@ function App() {
           },
         });
 
-        console.log(response.data.data);
         const convertedData = response.data.data.map((meeting) => {
           const meetingInfo = meeting.summary.meetingInfo;
 
@@ -73,7 +72,6 @@ function App() {
             outcomes,
           };
         });
-        console.log(response.data.data);
         setDataForAside(response.data.data);
         setMeetingData(convertedData);
       } catch (error) {
@@ -113,7 +111,6 @@ function App() {
       }`,
     };
   });
-  console.log(newEvents);
 
   return (
     <>
