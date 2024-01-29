@@ -13,7 +13,7 @@ function App() {
     const fetchMeetingdata = async () => {
       const SERVER_API_URI =
         "https://archive-oracle.netlify.app/api/getMeetingSummaries";
-      const API_KEY = "bht409534jgerg4t4e8ge4gf8f3f3fsg";
+      const API_KEY = API_KEY;
 
       try {
         const response = await axios.get(SERVER_API_URI, {
