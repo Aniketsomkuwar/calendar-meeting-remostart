@@ -15,7 +15,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
       return meetingData?.actionItems;
     } else {
       return meetingData?.actionItems?.filter(
-        (item) => item.status === selectedCategory
+        (item) => item?.status === selectedCategory
       );
     }
   };
