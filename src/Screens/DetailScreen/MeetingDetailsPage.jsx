@@ -33,77 +33,74 @@ const MeetingDetailsPage = ({ meetingData }) => {
           </button>
         </div>
 
-        {meetingData?.attendees && <div>
-          <h3 className="text-lg font-semibold mb-2">Attendees</h3>
-          <div className="space-y-2">
-            {meetingData.attendees.map((attendee, index) => (
-              <AttendeeCard key={index} attendee={attendee} />
-            ))}
+        {meetingData?.Present && (
+          <div>
+            <h3 className="text-lg font-semibold mb-2">Attendees</h3>
+            <div className="space-y-2">
+              {meetingData.Present.map((attendee, index) => (
+                <AttendeeCard key={index} attendee={attendee} />
+              ))}
+            </div>
           </div>
-        </div>}
+        )}
       </div>
 
       {/* middle Panel  */}
       <div className="w-3/5 bg-white p-4 overflow-y-auto flex flex-col justify-items-center">
         <div className="bg-[#272829] text-white py-5 text-center">
           <h2 className="text-4xl font-extrabold">
-            {meetingData?.name} by {meetingData?.documenter} - {meetingData?.date}
+            {meetingData?.MeetingDate} by {meetingData?.MinutesBy} - {meetingData?.MeetingDate}
           </h2>
         </div>
         <div className="p-10 shadow-lg container mx-auto">
-          {/* <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">Apologies</h3>
-            <ul className="list-disc list-inside">
-              {meetingData.apologies.map((apology, index) => (
-                <li key={index} className="mb-1">
-                  {apology}
-                </li>
-              ))}
-            </ul>
-          </div> */}
+          {meetingData?.["Agenda items"] && (
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold mb-2">Agenda Items</h3>
+              <ul className="list-disc list-inside">
+                {meetingData["Agenda items"].split(";").map((item, index) => (
+                  <li key={index} className="mb-1">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-          {meetingData?.agendaItems && <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">Agenda Items</h3>
-            <ul className="list-disc list-inside">
-              {meetingData.agendaItems.map((item, index) => (
-                <li key={index} className="mb-1">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>}
+          {meetingData?.["Key discussion points"] && (
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold mb-2">
+                Key Discussion Points
+              </h3>
+              <ul className="list-disc list-inside">
+                {meetingData["Key discussion points"].split(";").map((point, index) => (
+                  <li key={index} className="mb-1">
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-         {meetingData?.keyDiscussionPoints && <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">
-              Key Discussion Points
-            </h3>
-            <ul className="list-disc list-inside">
-              {meetingData.keyDiscussionPoints.map((point, index) => (
-                <li key={index} className="mb-1">
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>}
-
-          {meetingData?.decisions && <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">Decisions</h3>
-            <ul className="list-disc list-inside">
-              {meetingData.decisions.map((decision, index) => (
-                <li key={index} className="mb-1">
-                  {decision}
-                </li>
-              ))}
-            </ul>
-          </div>}
+          {meetingData?.Decisions && (
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold mb-2">Decisions</h3>
+              <ul className="list-disc list-inside">
+                {meetingData.Decisions.split(";").map((decision, index) => (
+                  <li key={index} className="mb-1">
+                    {decision}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
-        {meetingData?.outcomes && (
+        {meetingData?.["Outcomes and any further action items arising?"] && (
           <div className="p-10 shadow-lg rounded-xl">
             <div className="mb-6">
               <h3 className="text-xl font-semibold mb-2">Outcomes</h3>
               <ul className="list-disc list-inside">
-                {meetingData.outcomes.map((outcome, index) => (
+                {meetingData["Outcomes and any further action items arising?"].split(";").map((outcome, index) => (
                   <li key={index} className="mb-1">
                     {outcome}
                   </li>
