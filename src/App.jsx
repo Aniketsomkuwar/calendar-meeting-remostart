@@ -60,7 +60,6 @@ function App() {
           const outcomes = meeting.summary.agendaItems
             ?.map((item) => item.learningPoints)
             .flat();
-
           return {
             date,
             name,
