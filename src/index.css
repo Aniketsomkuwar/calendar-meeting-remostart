@@ -77,7 +77,9 @@
 .fc-list-empty,
 .fc-daygrid-day-number,
 .fc-scrollgrid-shrink-cushion,
-.fc-list-event-title {
+.fc-list-event-title,
+.fc-list-day-text,
+.fc-list-day-side-text {
   font-family: "Montserrat" !important;
 }
 
@@ -100,7 +102,15 @@
   padding-left: 0.5rem !important;
 }
 
-.fc-daygrid-event{
-  white-space:wrap !important;
-  cursor:pointer;
+.fc-daygrid-event {
+  white-space: wrap !important;
+  cursor: pointer;
+}
+
+.fc-list-event-title {
+  cursor: pointer;
+}
+
+.selected-event {
+  background-color: #66b2b2 !important;
 }
