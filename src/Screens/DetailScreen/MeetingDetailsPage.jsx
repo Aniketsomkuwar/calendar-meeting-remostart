@@ -38,7 +38,7 @@ const MeetingDetailsPage = ({ meetingData }) => {
       {/* middle Panel  */}
       <div className="w-3/5 bg-white p-4 overflow-y-auto flex flex-col justify-items-center">
         <div className="bg-[#272829] text-white py-5 text-center">
-          <h2 className="text-4xl font-extrabold">
+          <h2 className="text-3xl font-extrabold">
             Meeting by {meetingData?.minutesBy} - {meetingData?.date}
           </h2>
         </div>
