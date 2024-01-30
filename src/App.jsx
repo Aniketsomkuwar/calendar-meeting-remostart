@@ -33,10 +33,10 @@ function App() {
           const actionItems = meeting["Action items"];
           const actionItemDone = meeting["Action item done?"];
           const outcomes =
-            meeting["Outcomes and any further action items arising?"];
+          meeting["Outcomes and any further action items arising?"];
           const ideasForDiscussion =
-            meeting["Ideas that need further discussion"];
-
+          meeting["Ideas that need further discussion"];
+          
           return {
             date,
             minutesBy,
@@ -53,14 +53,13 @@ function App() {
           };
         });
         setMeetingData(convertedData);
-        console.log(convertedData);
+        
       } catch (error) {
         console.log(error);
       }
     };
     fetchMeetingdata();
   }, [setMeetingData]);
-
   const newEvents = meetingData.map((meeting, index) => {
     return {
       id: index,
