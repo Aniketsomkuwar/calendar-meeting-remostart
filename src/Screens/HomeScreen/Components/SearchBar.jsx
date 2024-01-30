@@ -37,8 +37,8 @@ export default function SearchBar({ newEvents }) {
       const fieldToSearch =
         dropType === "agenda"
           ? item.agenda.toLowerCase()
-          : dropType === "present"
-          ? item.present.toLowerCase()
+          : dropType === "minutesBy"
+          ? item.title.toLowerCase()
           : "";
 
       return fieldToSearch.includes(searchString);
@@ -48,7 +48,7 @@ export default function SearchBar({ newEvents }) {
   }, [newEvents, inputValue, dropType]);
 
   function handleListClick(item) {
-    setInputValue(dropType === "agenda" ? item.agenda : item.present);
+    setInputValue(dropType === "agenda" ? item.agenda : item.title);
     setSearchQuery(item.id);
   }
 
@@ -70,7 +70,7 @@ export default function SearchBar({ newEvents }) {
               <PiTextAUnderlineBold size={18} />
             </IconButton>
 
-            <IconButton onButtonClick={() => setDropType("present")}>
+            <IconButton onButtonClick={() => setDropType("minutesBy")}>
               <BiUser size={18} />
             </IconButton>
           </div>
@@ -88,7 +88,7 @@ export default function SearchBar({ newEvents }) {
 
       {dropVisible && (
         <div className="bg-white absolute top-16 w-[18.7rem] left-20 rounded-md z-10 pb-1">
-          <ul className="max-h-48 overflow-auto">
+          <ul className="max-h-48 overflow-auto whitespace-normal break-words text-left">
             {filteredEvents.map((item, i) => (
               <li
                 className="font-customFont p-3 border-b-2 border-gray-200 border-solid hover:bg-gray-200 cursor-pointer text-sm font-medium rounded-t-md"
@@ -96,7 +96,7 @@ export default function SearchBar({ newEvents }) {
                 onClick={() => handleListClick(item)}
               >
                 <span className="text-xs mr-2">🟢</span>
-                {dropType === "agenda" ? item.agenda : item.present}
+                {dropType === "agenda" ? item.agenda : item.title}
               </li>
             ))}
           </ul>

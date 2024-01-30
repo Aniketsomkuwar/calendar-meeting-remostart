@@ -1,28 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
 import MeetingDetailsPage from "./Screens/DetailScreen/MeetingDetailsPage";
 import { useMeetingContext } from "./store/MeetingContext";
-const API = import.meta.env.VITE_REACT_APP_API;
+import dayjs from "dayjs";
 
+const API = import.meta.env.VITE_REACT_APP_API;
 
 function App() {
   const { meetingData, setMeetingData, showMeet } = useMeetingContext();
 
-  const [dataForAside, setDataForAside] = useState([]);
+  const removeSuffix = (dateString) => {
+    return dateString.replace(/(\d+)(st|nd|rd|th)/, "$1");
+  };
 
   useEffect(() => {
     const fetchMeetingdata = async () => {
-
       try {
         const response = await axios.get(API);
-      
+
         const convertedData = response.data.data.slice(1).map((meeting) => {
           const date = meeting.MeetingDate;
           const minutesBy = meeting.MinutesBy;
-          const present = meeting.Present
-            ?.split(",")
-            ?.map((attendee) => attendee.trim());
+          const present = meeting.Present?.split(",")?.map((attendee) =>
+            attendee.trim()
+          );
           const apologies = meeting.Apologies;
           const agendaItems = meeting["Agenda items"];
           const keyDiscussionPoints = meeting["Key discussion points"];
@@ -30,9 +32,11 @@ function App() {
           const laterChanges = meeting["Any later changes?"];
           const actionItems = meeting["Action items"];
           const actionItemDone = meeting["Action item done?"];
-          const outcomes = meeting["Outcomes and any further action items arising?"];
-          const ideasForDiscussion = meeting["Ideas that need further discussion"];
-      
+          const outcomes =
+            meeting["Outcomes and any further action items arising?"];
+          const ideasForDiscussion =
+            meeting["Ideas that need further discussion"];
+
           return {
             date,
             minutesBy,
@@ -48,9 +52,8 @@ function App() {
             ideasForDiscussion,
           };
         });
-        setDataForAside(response.data.data);
         setMeetingData(convertedData);
-        console.log(convertedData)
+        console.log(convertedData);
       } catch (error) {
         console.log(error);
       }
@@ -58,28 +61,19 @@ function App() {
     fetchMeetingdata();
   }, [setMeetingData]);
 
-  const meetingDataWithId = dataForAside.map((meeting, index) => {
+  const newEvents = meetingData.map((meeting, index) => {
     return {
       id: index,
-      data: meeting,
-    };
-  });
-
-  const newEvents = meetingDataWithId.slice(1).map((meeting) => {
-    return {
-      id: meeting?.id,
-      agenda: `Meeting by ${
-        meeting ? meeting.data.MinutesBy : "Unknown"
-      }`,
-      present: `${
-        meeting ? meeting.data.Present : "Unknown"
-      }`,
+      agenda: `${meeting ? meeting.agendaItems : ""}`,
+      title: `Minutes by ${meeting ? meeting.minutesBy : "Unknown"}`,
+      present: `${meeting ? meeting.present : "Unknown"}`,
       start: `${
-        meeting ? meeting.data.MeetingDate : "2020-02-29"
+        meeting
+          ? dayjs(removeSuffix(meeting.date)).format("YYYY-MM-DD")
+          : "2020-02-29"
       }`,
     };
   });
-
 
   return (
     <>
