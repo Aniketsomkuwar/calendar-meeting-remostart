@@ -70,7 +70,8 @@ function App() {
         meeting
           ? dayjs(removeSuffix(meeting.date)).format("YYYY-MM-DD")
           : "2020-02-29"
-      }`,
+        }`,
+      keyDiscussionPoints : `${meeting ? meeting.keyDiscussionPoints : "Unknown"}`,
     };
   });
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BiSolidCategory, BiUser } from "react-icons/bi";
+import { BiSolidCategory, BiUser, BiUserCheck, BiChat } from "react-icons/bi";
 import { PiTextAUnderlineBold } from "react-icons/pi";
 import IconButton from "./IconButton";
 import { useMeetingContext } from "../../../store/MeetingContext";
@@ -10,7 +10,7 @@ export default function SearchBar({ newEvents }) {
   const [dropVisible, setDropVisible] = useState(false);
   const [iconTrayVisible, setIconTrayVisible] = useState(false);
 
-  const [dropType, setDropType] = useState("agenda");
+  const [dropType, setDropType] = useState("");
 
   function handleSearchDropVisible() {
     setIconTrayVisible(false);
@@ -33,14 +33,23 @@ export default function SearchBar({ newEvents }) {
   useEffect(() => {
     // Filter events based on input value and drop type
     const filtered = newEvents.filter((item) => {
+      console.log(item);
       const searchString = inputValue.toLowerCase();
-      const fieldToSearch =
-        dropType === "agenda"
-          ? item.agenda.toLowerCase()
-          : dropType === "minutesBy"
-          ? item.title.toLowerCase()
-          : "";
-
+      let fieldToSearch = "";
+      switch (dropType) {
+        case "agenda":
+          fieldToSearch = item.agenda.toLowerCase();
+          break;
+        case "minutesBy":
+          fieldToSearch = item.title.toLowerCase();
+          break;
+        case "presentPeople":
+          fieldToSearch = item.present.toLowerCase();
+          break;
+        case "discussionPoints":
+          fieldToSearch = item.keyDiscussionPoints.toLowerCase();
+          break;
+      }
       return fieldToSearch.includes(searchString);
     });
 
@@ -73,6 +82,13 @@ export default function SearchBar({ newEvents }) {
             <IconButton onButtonClick={() => setDropType("minutesBy")}>
               <BiUser size={18} />
             </IconButton>
+
+            <IconButton onButtonClick={() => setDropType("presentPeople")}>
+              <BiUserCheck size={18} />
+            </IconButton>
+            <IconButton onButtonClick={() => setDropType("discussionPoints")}>
+              <BiChat size={18} />
+            </IconButton>
           </div>
         )}
 
@@ -96,7 +112,15 @@ export default function SearchBar({ newEvents }) {
                 onClick={() => handleListClick(item)}
               >
                 <span className="text-xs mr-2">🟢</span>
-                {dropType === "agenda" ? item.agenda : item.title}
+                {dropType === "agenda"
+                  ? item.agenda
+                  : dropType === "minutesBy"
+                  ? item.title
+                  : dropType === "presentPeople"
+                  ? item.present
+                  : dropType === "discussionPoints"
+                  ? item.keyDiscussionPoints
+                  : item.agenda}
               </li>
             ))}
           </ul>
