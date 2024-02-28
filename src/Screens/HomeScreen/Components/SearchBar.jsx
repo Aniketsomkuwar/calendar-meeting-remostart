@@ -10,7 +10,7 @@ export default function SearchBar({ newEvents }) {
   const [dropVisible, setDropVisible] = useState(false);
   const [iconTrayVisible, setIconTrayVisible] = useState(false);
 
-  const [dropType, setDropType] = useState("");
+  const [dropType, setDropType] = useState("agenda");
 
   function handleSearchDropVisible() {
     setIconTrayVisible(false);
