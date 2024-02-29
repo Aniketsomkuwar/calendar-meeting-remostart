@@ -1,8 +1,11 @@
 import dayjs from "dayjs";
+
+//component imports from the same component folder
 import CalendarSmall from "./CalendarSmall";
 import Events from "./Events";
 import SearchBar from "./SearchBar";
 
+//side bar component
 export default function SideBar({ handleCustomDate, newEvents }) {
   const today = new Date();
   const todayDate = dayjs(today).format("YYYY-MM-DD");
@@ -15,6 +18,7 @@ export default function SideBar({ handleCustomDate, newEvents }) {
 
         <CalendarSmall today={today} handleCustomDate={handleCustomDate} />
 
+        {/* today events display */}
         <Events date={todayDate} day={"TODAY"}>
           {newEvents.map((meeting, i) =>
             meeting.start === todayDate ? (
@@ -32,6 +36,7 @@ export default function SideBar({ handleCustomDate, newEvents }) {
           )}
         </Events>
 
+        {/* tomorrow event display */}
         <Events date={tomorrowDate} day={"TOMORROW"}>
           {newEvents.map((meeting, i) =>
             meeting.start === tomorrowDate ? (

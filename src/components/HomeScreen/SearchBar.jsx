@@ -1,42 +1,56 @@
 import { useEffect, useState } from "react";
+
+//icons import
 import { BiSolidCategory, BiUser, BiUserCheck, BiChat } from "react-icons/bi";
+import { RxCross2 } from "react-icons/rx";
 import { PiTextAUnderlineBold } from "react-icons/pi";
 import IconButton from "./IconButton";
-import { useMeetingContext } from "../../../store/MeetingContext";
 
+//importing from store
+import { useMeetingContext } from "../../store/MeetingContext";
+
+//search bar component
 export default function SearchBar({ newEvents }) {
-  const { searchQuery, setSearchQuery, inputValue, setInputValue } =
-    useMeetingContext();
+  const { setSearchQuery, inputValue, setInputValue } = useMeetingContext();
 
   const [dropVisible, setDropVisible] = useState(false);
   const [iconTrayVisible, setIconTrayVisible] = useState(false);
-
   const [dropType, setDropType] = useState("agenda");
-
   const [filteredEvents, setFilteredEvents] = useState(newEvents);
+  const [isInputFocus, setIsInputFocus] = useState(false);
 
+  //for clicking on the search bar
   function handleInputFocus() {
     setIconTrayVisible(false);
     setDropVisible(true);
+    setIsInputFocus(true);
   }
 
+  //for clearing the input field
+  function handleCrossIcon() {
+    setDropVisible(false);
+    setIsInputFocus(false);
+    setInputValue("");
+  }
+
+  //runs when the value is selected from the search suggestion
   function handleInputChange(data) {
     setInputValue(data);
   }
 
+  //for handling the icon tray
   function handleIconTrayVisible() {
     setIconTrayVisible((visible) => !visible);
     setInputValue("");
   }
 
+  //for handling the items clicked in the suggestion list
   function handleListClick(item) {
     setInputValue(dropType === "agenda" ? item.agenda : item.title);
     setSearchQuery(item.id);
   }
 
-  console.log(searchQuery);
-  console.log(inputValue);
-
+  //for removing the suggestions box when a item is clicked
   useEffect(
     function () {
       if (inputValue) {
@@ -74,12 +88,21 @@ export default function SearchBar({ newEvents }) {
   return (
     <>
       <div className="flex items-center mt-5 justify-between">
-        <button
-          className="font-customFont font-medium bg-[#2c3e50] text-xl py-2 px-3 rounded-full text-[white] ml-4 border-2 border-white border-solid"
-          onClick={handleIconTrayVisible}
-        >
-          <BiSolidCategory />
-        </button>
+        {isInputFocus ? (
+          <button
+            className="font-customFont font-medium bg-[#2c3e50] text-xl py-2 px-3 rounded-full text-[white] ml-4 border-2 border-white border-solid"
+            onClick={handleCrossIcon}
+          >
+            <RxCross2 />
+          </button>
+        ) : (
+          <button
+            className="font-customFont font-medium bg-[#2c3e50] text-xl py-2 px-3 rounded-full text-[white] ml-4 border-2 border-white border-solid"
+            onClick={handleIconTrayVisible}
+          >
+            <BiSolidCategory />
+          </button>
+        )}
 
         {/* Icon Tray */}
 
@@ -102,6 +125,7 @@ export default function SearchBar({ newEvents }) {
           </div>
         )}
 
+        {/* search input bar */}
         <input
           placeholder={`Search by ${dropType}`}
           className="w-3/4 mr-5 px-3 h-10 rounded-md  placeholder:font-normal placeholder:text-sm placeholder:font-customFont placeholder:text-gray-700 outline-none font-customFont font-medium border-none text-sm"
@@ -111,6 +135,7 @@ export default function SearchBar({ newEvents }) {
         />
       </div>
 
+      {/* suggestions box for search bar */}
       {dropVisible && (
         <div className="bg-white absolute top-16 w-[18.7rem] left-20 rounded-md z-10 pb-1">
           <ul className="max-h-48 overflow-auto whitespace-normal break-words text-left">

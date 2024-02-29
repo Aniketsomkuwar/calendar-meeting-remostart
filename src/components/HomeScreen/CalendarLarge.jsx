@@ -1,17 +1,23 @@
+import { useEffect, useRef, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import { useEffect, useRef, useState } from "react";
-import { useMeetingContext } from "../../../store/MeetingContext";
 
+//importing from store
+import { useMeetingContext } from "../../store/MeetingContext";
+
+//right part event display component on the homescreen
 export default function CalendarLarge({ customDate, newEvents }) {
   const { setShowMeet, searchQuery } = useMeetingContext();
 
   const [highlightedEvent, setHighlightedEvent] = useState(null);
 
+  //ref for calendar to mutate some values
   const calendarRef = useRef(null);
+
+  //events array to display in the event list
   const events = newEvents.map((meeting) => ({
     title: meeting.title,
     start: meeting.start,
@@ -21,20 +27,20 @@ export default function CalendarLarge({ customDate, newEvents }) {
     classNames: highlightedEvent === meeting.id ? "selected-event" : "",
   }));
 
+  //this useEffect is used to navigate this full calendar using the left small calendar
   useEffect(() => {
     if (calendarRef.current) {
       calendarRef.current.getApi().gotoDate(customDate);
     }
   }, [customDate]);
 
+  // this useEffect is used when a event is clicked from search bar suggestion from the left part, then the right event list display the selected event from the search bar
   useEffect(() => {
     if (searchQuery === "") {
       setHighlightedEvent(null);
       return;
     }
-
     const foundEvent = events.find((event) => event.index === searchQuery);
-
     if (foundEvent) {
       setHighlightedEvent(foundEvent.index);
       if (calendarRef.current) {
@@ -51,6 +57,7 @@ export default function CalendarLarge({ customDate, newEvents }) {
 
   return (
     <div className="w-full">
+      {/* using fullcalendar library */}
       {
         <FullCalendar
           ref={calendarRef}

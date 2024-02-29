@@ -1,3 +1,4 @@
+//reusable component for today and tomorrow events
 export default function Events({ children, date, day }) {
   const textColor = day === "TODAY" ? "text-[#c30101]" : "text-white";
 

@@ -1,13 +1,17 @@
+import { useState } from "react";
 import { StaticDatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
-import { useState } from "react";
-import { useMeetingContext } from "../../../store/MeetingContext";
 
+//importing from store
+import { useMeetingContext } from "../../store/MeetingContext";
+
+//small calendar on the left part component
 export default function CalendarSmall({ today, handleCustomDate }) {
   const { setSearchQuery, setInputValue } = useMeetingContext();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  //for reseting the calendar to default values
   function handleResetCalendar() {
     setSelectedDate(today);
     handleCustomDate(today);
@@ -17,6 +21,7 @@ export default function CalendarSmall({ today, handleCustomDate }) {
 
   return (
     <div className="w-fit left-0 right-0 mx-auto pt-12 px-10">
+      {/* using the StaticDatePicker from mui library */}
       <StaticDatePicker
         defaultValue={dayjs(today)}
         value={dayjs(selectedDate)}
@@ -54,6 +59,8 @@ export default function CalendarSmall({ today, handleCustomDate }) {
           },
         }}
       />
+
+      {/* reset button */}
       <button
         className="text-[#66b2b2] px-5 py-2 font-customFont font-semibold relative left-56 bottom-10 hover:bg-[#2c3e50]"
         onClick={handleResetCalendar}

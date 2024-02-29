@@ -1,14 +1,17 @@
-import { useState } from "react";
-import AttendeeCard from "./Components/Cards/AttendeeCard";
-import ActionItemCard from "./Components/Cards/ActionItemCard";
-import { useMeetingContext } from "../../store/MeetingContext";
+//importing from meeting details component
+import AttendeeCard from "../components/MeetingDetailScreen/AttendeeCard";
+import ActionItemCard from "../components/MeetingDetailScreen/ActionItemCard";
+//importing from store
+import { useMeetingContext } from "../store/MeetingContext";
 
+//meetingDetails page component -> parent component
 const MeetingDetailsPage = ({ meetingData }) => {
   const { setShowMeet } = useMeetingContext();
+
+  //navigate back to main screen
   const handleGoBack = () => {
     setShowMeet(null);
   };
-
 
   return (
     <div className="flex h-screen font-customFont">
@@ -62,11 +65,13 @@ const MeetingDetailsPage = ({ meetingData }) => {
                 Key Discussion Points
               </h3>
               <ul className="list-disc list-inside">
-                {meetingData.keyDiscussionPoints.split(";").map((point, index) => (
-                  <li key={index} className="mb-1">
-                    {point}
-                  </li>
-                ))}
+                {meetingData.keyDiscussionPoints
+                  .split(";")
+                  .map((point, index) => (
+                    <li key={index} className="mb-1">
+                      {point}
+                    </li>
+                  ))}
               </ul>
             </div>
           )}
@@ -104,10 +109,10 @@ const MeetingDetailsPage = ({ meetingData }) => {
       {/* right panel  */}
       <div className="w-1/5 bg-gray-200 p-4 overflow-y-auto">
         <h3 className="text-2xl font-bold mb-4 text-center">Action Items</h3>
-        
+
         <div className="space-y-2">
           {/* {meetingData?.actionItems.map((actionItem, index) => ( */}
-            <ActionItemCard actionItem={meetingData.actionItems} />
+          <ActionItemCard actionItem={meetingData.actionItems} />
           {/* ))} */}
         </div>
       </div>

@@ -13,6 +13,8 @@
   display: none;
 }
 
+/* left-part calendar style override */
+
 .MuiSvgIcon-root {
   color: #fff;
 }
@@ -23,10 +25,6 @@
   font-weight: bold !important;
   font-family: "Montserrat" !important;
 }
-
-/* .MuiButton-root:hover {
-  background-color: #89cff3 !important;
-} */
 
 .MuiTypography-overline {
   display: none;
@@ -43,7 +41,7 @@
   display: none;
 }
 
-/* Right Calendar Style Override */
+/* Right-part event lists Style Override */
 
 .fc-header-toolbar {
   margin: 0 !important;
@@ -110,6 +108,8 @@
 .fc-list-event-title {
   cursor: pointer;
 }
+
+/* right side event list */
 
 .selected-event {
   background-color: #66b2b2 !important;
