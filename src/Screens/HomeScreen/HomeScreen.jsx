@@ -5,6 +5,7 @@ import SideBar from "./Components/SideBar";
 export default function HomeScreen({ newEvents }) {
   const [customDate, setCustomDate] = useState(new Date());
   const [searchQuery, setSearchQuery] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   function handleCustomDate(date) {
     setCustomDate(date);
@@ -18,6 +19,8 @@ export default function HomeScreen({ newEvents }) {
           newEvents={newEvents}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
         />
         <CalendarLarge
           customDate={customDate}

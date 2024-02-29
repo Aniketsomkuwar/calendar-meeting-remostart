@@ -4,9 +4,13 @@ import { PiTextAUnderlineBold } from "react-icons/pi";
 import IconButton from "./IconButton";
 import { useMeetingContext } from "../../../store/MeetingContext";
 
-export default function SearchBar({ newEvents, searchQuery, setSearchQuery }) {
-  const { inputValue, setInputValue } = useMeetingContext();
-
+export default function SearchBar({
+  newEvents,
+  searchQuery,
+  setSearchQuery,
+  inputValue,
+  setInputValue,
+}) {
   const [dropVisible, setDropVisible] = useState(false);
   const [iconTrayVisible, setIconTrayVisible] = useState(false);
 
@@ -61,6 +65,7 @@ export default function SearchBar({ newEvents, searchQuery, setSearchQuery }) {
   }
 
   console.log(searchQuery);
+  console.log(inputValue);
 
   return (
     <>

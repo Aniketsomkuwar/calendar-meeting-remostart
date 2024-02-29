@@ -8,6 +8,8 @@ export default function SideBar({
   newEvents,
   searchQuery,
   setSearchQuery,
+  inputValue,
+  setInputValue,
 }) {
   const today = new Date();
   const todayDate = dayjs(today).format("YYYY-MM-DD");
@@ -20,6 +22,8 @@ export default function SideBar({
           newEvents={newEvents}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
         />
 
         <CalendarSmall today={today} handleCustomDate={handleCustomDate} />
