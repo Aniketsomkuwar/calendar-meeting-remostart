@@ -5,7 +5,8 @@ import IconButton from "./IconButton";
 import { useMeetingContext } from "../../../store/MeetingContext";
 
 export default function SearchBar({ newEvents }) {
-  const { setSearchQuery, inputValue, setInputValue } = useMeetingContext();
+  const { setSearchQuery, inputValue, setInputValue, searchQuery } =
+    useMeetingContext();
 
   const [dropVisible, setDropVisible] = useState(false);
   const [iconTrayVisible, setIconTrayVisible] = useState(false);
@@ -33,7 +34,6 @@ export default function SearchBar({ newEvents }) {
   useEffect(() => {
     // Filter events based on input value and drop type
     const filtered = newEvents.filter((item) => {
-      console.log(item);
       const searchString = inputValue.toLowerCase();
       let fieldToSearch = "";
       switch (dropType) {
@@ -60,6 +60,8 @@ export default function SearchBar({ newEvents }) {
     setInputValue(dropType === "agenda" ? item.agenda : item.title);
     setSearchQuery(item.id);
   }
+
+  console.log(searchQuery);
 
   return (
     <>

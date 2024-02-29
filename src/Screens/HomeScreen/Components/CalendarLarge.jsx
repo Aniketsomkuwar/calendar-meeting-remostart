@@ -12,13 +12,13 @@ export default function CalendarLarge({ customDate, newEvents }) {
   const [highlightedEvent, setHighlightedEvent] = useState(null);
 
   const calendarRef = useRef(null);
-  const events = newEvents.map((meeting, index) => ({
+  const events = newEvents.map((meeting) => ({
     title: meeting.title,
     start: meeting.start,
-    index: index,
+    index: meeting.id,
     // backgroundColor: highlightedEvent === index ? "#66b2b2" : "#3788d8",
-    borderColor: highlightedEvent === index ? "#3788d8" : "#66b2b2",
-    classNames: highlightedEvent === index ? "selected-event" : "",
+    borderColor: highlightedEvent === meeting.id ? "#3788d8" : "#66b2b2",
+    classNames: highlightedEvent === meeting.id ? "selected-event" : "",
   }));
 
   useEffect(() => {
@@ -28,24 +28,17 @@ export default function CalendarLarge({ customDate, newEvents }) {
   }, [customDate]);
 
   useEffect(() => {
-    if (searchQuery !== "") {
-      const isNumeric = !isNaN(searchQuery);
+    if (searchQuery === "") {
+      setHighlightedEvent(null);
+      return;
+    }
 
-      const foundEvent = events.find((event) =>
-        isNumeric
-          ? event.index === parseInt(searchQuery)
-          : event.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+    const foundEvent = events.find((event) => event.index === searchQuery);
 
-      if (foundEvent) {
-        setHighlightedEvent(foundEvent.index);
-
-        if (calendarRef.current) {
-          // calendarRef.current.getApi().changeView("listMonth");
-          calendarRef.current.getApi().gotoDate(foundEvent.start);
-        }
-      } else {
-        setHighlightedEvent(null);
+    if (foundEvent) {
+      setHighlightedEvent(foundEvent.index);
+      if (calendarRef.current) {
+        calendarRef.current.getApi().gotoDate(foundEvent.start);
       }
     } else {
       setHighlightedEvent(null);
