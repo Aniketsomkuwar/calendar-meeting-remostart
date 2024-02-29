@@ -6,6 +6,8 @@ const MeetingContext = createContext();
 export const MeetingProvider = ({ children }) => {
   const [meetingData, setMeetingData] = useState([]);
   const [showMeet, setShowMeet] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [inputValue, setInputValue] = useState("");
   return (
     <MeetingContext.Provider
       value={{
@@ -13,6 +15,10 @@ export const MeetingProvider = ({ children }) => {
         setMeetingData,
         showMeet,
         setShowMeet,
+        searchQuery,
+        setSearchQuery,
+        inputValue,
+        setInputValue,
       }}
     >
       {children}

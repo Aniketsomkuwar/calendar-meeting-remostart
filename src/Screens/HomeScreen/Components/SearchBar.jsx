@@ -4,23 +4,20 @@ import { PiTextAUnderlineBold } from "react-icons/pi";
 import IconButton from "./IconButton";
 import { useMeetingContext } from "../../../store/MeetingContext";
 
-export default function SearchBar({
-  newEvents,
-  searchQuery,
-  setSearchQuery,
-  inputValue,
-  setInputValue,
-}) {
+export default function SearchBar({ newEvents }) {
+  const { searchQuery, setSearchQuery, inputValue, setInputValue } =
+    useMeetingContext();
+
   const [dropVisible, setDropVisible] = useState(false);
   const [iconTrayVisible, setIconTrayVisible] = useState(false);
 
   const [dropType, setDropType] = useState("agenda");
 
-  function handleSearchDropVisible() {
+  const [filteredEvents, setFilteredEvents] = useState(newEvents);
+
+  function handleInputFocus() {
     setIconTrayVisible(false);
-    setTimeout(() => {
-      setDropVisible((visible) => !visible);
-    }, 100);
+    setDropVisible(true);
   }
 
   function handleInputChange(data) {
@@ -32,7 +29,22 @@ export default function SearchBar({
     setInputValue("");
   }
 
-  const [filteredEvents, setFilteredEvents] = useState(newEvents);
+  function handleListClick(item) {
+    setInputValue(dropType === "agenda" ? item.agenda : item.title);
+    setSearchQuery(item.id);
+  }
+
+  console.log(searchQuery);
+  console.log(inputValue);
+
+  useEffect(
+    function () {
+      if (inputValue) {
+        setDropVisible(false);
+      }
+    },
+    [inputValue]
+  );
 
   useEffect(() => {
     // Filter events based on input value and drop type
@@ -58,14 +70,6 @@ export default function SearchBar({
 
     setFilteredEvents(filtered);
   }, [newEvents, inputValue, dropType]);
-
-  function handleListClick(item) {
-    setInputValue(dropType === "agenda" ? item.agenda : item.title);
-    setSearchQuery(item.id);
-  }
-
-  console.log(searchQuery);
-  console.log(inputValue);
 
   return (
     <>
@@ -101,8 +105,7 @@ export default function SearchBar({
         <input
           placeholder={`Search by ${dropType}`}
           className="w-3/4 mr-5 px-3 h-10 rounded-md  placeholder:font-normal placeholder:text-sm placeholder:font-customFont placeholder:text-gray-700 outline-none font-customFont font-medium border-none text-sm"
-          onFocus={handleSearchDropVisible}
-          onBlur={handleSearchDropVisible}
+          onFocus={handleInputFocus}
           value={inputValue}
           onChange={(e) => handleInputChange(e.target.value)}
         />

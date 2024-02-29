@@ -6,8 +6,8 @@ import listPlugin from "@fullcalendar/list";
 import { useEffect, useRef, useState } from "react";
 import { useMeetingContext } from "../../../store/MeetingContext";
 
-export default function CalendarLarge({ customDate, newEvents, searchQuery }) {
-  const { setShowMeet } = useMeetingContext();
+export default function CalendarLarge({ customDate, newEvents }) {
+  const { setShowMeet, searchQuery } = useMeetingContext();
 
   const [highlightedEvent, setHighlightedEvent] = useState(null);
 

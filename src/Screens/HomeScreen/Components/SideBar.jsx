@@ -3,14 +3,7 @@ import CalendarSmall from "./CalendarSmall";
 import Events from "./Events";
 import SearchBar from "./SearchBar";
 
-export default function SideBar({
-  handleCustomDate,
-  newEvents,
-  searchQuery,
-  setSearchQuery,
-  inputValue,
-  setInputValue,
-}) {
+export default function SideBar({ handleCustomDate, newEvents }) {
   const today = new Date();
   const todayDate = dayjs(today).format("YYYY-MM-DD");
   const tomorrowDate = dayjs(today).add(1, "day").format("YYYY-MM-DD");
@@ -18,13 +11,7 @@ export default function SideBar({
   return (
     <>
       <aside className="w-fit min-h-screen bg-[#272829]">
-        <SearchBar
-          newEvents={newEvents}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-        />
+        <SearchBar newEvents={newEvents} />
 
         <CalendarSmall today={today} handleCustomDate={handleCustomDate} />
 
